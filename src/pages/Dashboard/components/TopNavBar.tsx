@@ -34,14 +34,12 @@ export default function AppNavbar({
         isExtended ? "h-[317px]" : "h-[88px]",
       ].join(" ")}
       style={{
-        // base color so it never shows white
         backgroundColor: "#0F0F29",
-        // dark navy gradient like your reference
         backgroundImage:
           "linear-gradient(90deg, #0F0F29 0%, #21337B 55%, #13256C 100%)",
       }}
     >
-      {/* HEADER ART — big top-right background (must NOT crop) */}
+      {/* HEADER ART (extended only) */}
       {isExtended && (
         <div className="pointer-events-none absolute right-0 top-0 z-0 h-[317px] w-[647px] select-none">
           <img
@@ -53,8 +51,8 @@ export default function AppNavbar({
         </div>
       )}
 
-      {/* Top bar */}
-      <div className="relative z-10 mx-auto flex h-[88px] w-full max-w-[1440px] items-center justify-between px-[16px] lg:px-[40px]">
+      {/* Top bar (MAX left/right space) */}
+      <div className="relative z-10 flex h-[88px] w-full items-center justify-between px-[30px]">
         {/* Left: logo + links */}
         <div className="flex items-center gap-10">
           <img
@@ -131,7 +129,7 @@ export default function AppNavbar({
         </div>
       </div>
 
-      {/* Extended empty space under the navbar (keeps the 317px header height like Figma) */}
+      {/* Extended space under navbar */}
       {isExtended && <div className="h-[229px]" />}
     </header>
   );
