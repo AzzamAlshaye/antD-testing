@@ -1,10 +1,10 @@
 import React from "react";
 import { DownOutlined } from "@ant-design/icons";
+import { FiMenu, FiX } from "react-icons/fi";
 
 type NavbarMode = "extended" | "compact";
 
 type Props = {
-  /** Use ONE of them (variant kept for backward-compat with your router) */
   mode?: NavbarMode;
   variant?: NavbarMode;
   userName?: string;
@@ -25,6 +25,11 @@ export default function AppNavbar({
 }: Props): React.JSX.Element {
   const resolvedMode: NavbarMode = mode ?? variant ?? "extended";
   const isExtended = resolvedMode === "extended";
+
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  // close on route change (when link clicked)
+  const closeMobile = () => setMobileOpen(false);
 
   return (
     <header
@@ -51,7 +56,7 @@ export default function AppNavbar({
         </div>
       )}
 
-      {/* Top bar (MAX left/right space) */}
+      {/* Top bar */}
       <div className="relative z-10 flex h-[88px] w-full items-center justify-between px-[30px]">
         {/* Left: logo + links */}
         <div className="flex items-center gap-10">
@@ -62,6 +67,7 @@ export default function AppNavbar({
             draggable={false}
           />
 
+          {/* Desktop nav */}
           <nav className="hidden items-center gap-7 lg:flex">
             {navItems.map((label) => (
               <a
@@ -114,20 +120,68 @@ export default function AppNavbar({
             <DownOutlined style={{ fontSize: 12, opacity: 0.9 }} />
           </button>
 
-          {/* Menu (compact helper) */}
-          {!isExtended && (
-            <>
-              <div className="hidden h-[36px] w-px bg-white/40 md:block" />
-              <button className="hidden items-center gap-2 text-[#F9F9F9] opacity-90 hover:opacity-100 md:flex">
-                <span className="text-[12px]" style={{ fontFamily: "Inter" }}>
-                  Menu
-                </span>
-                <DownOutlined style={{ fontSize: 12, opacity: 0.9 }} />
-              </button>
-            </>
-          )}
+          {/* Burger menu (tablet and smaller) */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="ml-1 grid h-[36px] w-[36px] place-items-center rounded-lg text-white/90 hover:bg-white/10 hover:text-white lg:hidden"
+            aria-label="Open menu"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile/Tablet dropdown menu */}
+      {mobileOpen && (
+        <>
+          {/* overlay (click to close) */}
+          <button
+            className="absolute inset-0 z-20 cursor-default bg-black/30 lg:hidden"
+            onClick={closeMobile}
+            aria-label="Close menu overlay"
+          />
+
+          {/* dropdown panel */}
+          <div className="absolute left-0 top-[88px] z-30 w-full px-[20px] lg:hidden">
+            <div className="rounded-2xl border border-white/10 bg-[#0F0F29]/95 p-4 shadow-xl backdrop-blur">
+              <nav className="flex flex-col gap-2">
+                {navItems.map((label) => (
+                  <a
+                    key={label}
+                    href="#"
+                    onClick={closeMobile}
+                    className="rounded-xl px-3 py-3 text-[14px] text-white/90 hover:bg-white/10 hover:text-white"
+                    style={{ fontFamily: "Rubik" }}
+                  >
+                    {label}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="mt-4 h-px w-full bg-white/10" />
+
+              {/* Optional: quick actions */}
+              <div className="mt-4 flex items-center justify-between">
+                <button className="flex items-center gap-2 rounded-xl px-3 py-2 text-white/80 hover:bg-white/10 hover:text-white">
+                  <img src="/gloab.svg" alt="" className="h-[18px] w-[18px]" />
+                  <span className="text-[12px]" style={{ fontFamily: "Inter" }}>
+                    Search
+                  </span>
+                </button>
+
+                <button className="flex items-center gap-2 rounded-xl px-3 py-2 text-white/80 hover:bg-white/10 hover:text-white">
+                  <img src="/gloab.svg" alt="" className="h-[18px] w-[18px]" />
+                  <span className="text-[12px]" style={{ fontFamily: "Inter" }}>
+                    EN
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Extended space under navbar */}
       {isExtended && <div className="h-[229px]" />}
