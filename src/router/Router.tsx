@@ -1,63 +1,59 @@
-// src/router/Router.tsx
+import React from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+  Outlet,
+} from "react-router";
 
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
-import ProtectedRoute from "../components/ProtectedRoute";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { AuthProvider } from "../contexts/AuthContext";
+import AppNavbar from "../pages/Dashboard/components/TopNavBar";
+import DashboardPage from "../pages/Dashboard/DashboardPage";
 
-// Layouts
-function PublicLayout() {
-  return <Outlet />;
-}
-function MainLayout() {
+// Layout: Dashboard (extended)
+function DashboardLayout(): React.JSX.Element {
   return (
-    <>
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </>
+    <div className="min-h-dvh bg-[#F9F9F9]">
+      <AppNavbar mode="extended" />
+      <main>
+        <Outlet />
+      </main>
+    </div>
   );
 }
 
-// Pages
-import HomePage from "../pages/HomePage";
-import LoginPage from "../Auth/LoginPage";
-import Register from "../Auth/Register";
-import WeatherPage from "../pages/WeatherPage";
-import HistoryPage from "../pages/HistoryPage";
+// Layout: Default pages (compact)
+function DefaultLayout(): React.JSX.Element {
+  return (
+    <div className="min-h-dvh bg-[#F9F9F9]">
+      <AppNavbar mode="compact" />
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  );
+}
 
 const router = createBrowserRouter([
+  { path: "/", element: <Navigate to="/dashboard" replace /> },
+
+  // /dashboard uses extended navbar
   {
-    // PUBLIC routes under AuthProvider
-    element: (
-      <AuthProvider>
-        <PublicLayout />
-      </AuthProvider>
-    ),
-    children: [
-      { index: true, element: <HomePage /> },
-      { path: "login", element: <LoginPage /> },
-      { path: "register", element: <Register /> },
-    ],
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [{ index: true, element: <DashboardPage /> }],
   },
+
+  // everything else uses compact navbar
   {
-    // PROTECTED routes also under AuthProvider
-    element: (
-      <AuthProvider>
-        <ProtectedRoute>
-          <MainLayout />
-        </ProtectedRoute>
-      </AuthProvider>
-    ),
+    element: <DefaultLayout />,
     children: [
-      { path: "weather", element: <WeatherPage /> },
-      { path: "history", element: <HistoryPage /> },
+      // examples:
+      // { path: "customers", element: <CustomersPage /> },
+      // { path: "system-management", element: <SystemManagementPage /> },
     ],
   },
 ]);
 
-export default function AppRouter() {
-  // No outer AuthProvider here
+export default function AppRouter(): React.JSX.Element {
   return <RouterProvider router={router} />;
 }
