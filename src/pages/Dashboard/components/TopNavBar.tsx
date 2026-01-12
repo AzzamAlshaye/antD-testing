@@ -48,16 +48,21 @@ export default function TopNavBar({
           "linear-gradient(90deg, #0F0F29 0%, #21337B 55%, #13256C 100%)",
       }}
     >
-      {isExtended && (
-        <div className="pointer-events-none absolute right-0 top-0 z-0 h-[317px] w-[647px] select-none">
-          <img
-            src="/header-art.svg"
-            alt=""
-            className="h-full w-full object-contain object-right-top"
-            draggable={false}
-          />
-        </div>
-      )}
+      <div
+        className={[
+          "pointer-events-none absolute right-0 z-0 select-none",
+          isExtended
+            ? "top-0 h-[317px] w-[647px]"
+            : "h-[110px] w-[647px] scale-[1.2] origin-top-right",
+        ].join(" ")}
+      >
+        <img
+          src="/header-art.svg"
+          alt=""
+          className="h-full w-full object-contain object-right-top"
+          draggable={false}
+        />
+      </div>
 
       <div className="relative z-10 flex h-[88px] w-full items-center justify-between px-[30px]">
         <div className="flex items-center gap-10">
@@ -82,7 +87,7 @@ export default function TopNavBar({
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 mr-[30px]">
           <button
             type="button"
             className="hidden items-center gap-2 text-[#F9F9F9] opacity-90 hover:opacity-100 md:flex"
@@ -109,7 +114,10 @@ export default function TopNavBar({
 
           <div className="hidden h-[36px] w-px bg-white/40 md:block" />
 
-          <button type="button" className="flex items-center gap-3 text-[#F9F9F9]">
+          <button
+            type="button"
+            className="flex items-center gap-3 text-[#F9F9F9]"
+          >
             <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-[#BDC9FA] text-[11px] font-bold text-[#282727]">
               {userName
                 .split(" ")
