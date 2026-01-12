@@ -4,25 +4,30 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import type { FormikHelpers } from "formik";
 import { Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import { useTitle } from "../hooks/useTitle";
 import { useAuth } from "../contexts/AuthContext";
 import type { SignInDTO } from "../models/Auth.model";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginPage() {
-  useTitle("Login | Tuwaiq");
+  const { t } = useTranslation();
+  useTitle(t("auth.loginPageTitle"));
+
   const { login } = useAuth();
   const initialValues: SignInDTO = { email: "", password: "" };
 
   const validate = (values: SignInDTO) => {
     const errors: Partial<Record<keyof SignInDTO, string>> = {};
     if (!values.email) {
-      errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
+      errors.email = t("auth.required");
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+    ) {
+      errors.email = t("auth.invalidEmail");
     }
     if (!values.password) {
-      errors.password = "Required";
+      errors.password = t("auth.required");
     }
     return errors;
   };
@@ -33,7 +38,7 @@ export default function LoginPage() {
   ) => {
     try {
       await login(values);
-      toast.success("Logged in! Redirecting…");
+      toast.success(t("toast.loggedInRedirecting"));
     } catch {
       // error toast shown in context
     } finally {
@@ -52,9 +57,11 @@ export default function LoginPage() {
             className="w-35 object-cover"
           />
         </div>
+
         <h2 className="text-3xl font-bold text-[#eb6f4b] mb-6 text-center">
-          Log In
+          {t("auth.loginTitle")}
         </h2>
+
         <Formik
           initialValues={initialValues}
           validate={validate}
@@ -67,14 +74,14 @@ export default function LoginPage() {
                   htmlFor="email"
                   className="block text-neutral-100 font-medium mb-1"
                 >
-                  Email Address
+                  {t("auth.emailLabel")}
                 </label>
                 <Field
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="you@tuwaiq.edu.sa"
-                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
+                  placeholder={t("auth.emailPlaceholder")}
+                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
                 />
                 <ErrorMessage
                   name="email"
@@ -88,14 +95,14 @@ export default function LoginPage() {
                   htmlFor="password"
                   className="block text-neutral-100 font-medium mb-1"
                 >
-                  Password
+                  {t("auth.passwordLabel")}
                 </label>
                 <Field
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="********"
-                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
+                  placeholder={t("auth.passwordPlaceholder")}
+                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
                 />
                 <ErrorMessage
                   name="password"
@@ -113,23 +120,23 @@ export default function LoginPage() {
                     : "bg-[#eb6f4b] text-neutral-100 hover:bg-opacity-90"
                 }`}
               >
-                {isSubmitting ? "Logging In..." : "Log In"}
+                {isSubmitting ? t("auth.loggingIn") : t("auth.loginButton")}
               </button>
 
               <Link
                 to="/"
                 className="w-full block text-center mt-4 py-2 bg-neutral-100 text-neutral-800 font-semibold rounded-lg hover:bg-neutral-200 transition"
               >
-                Home
+                {t("common.home")}
               </Link>
 
               <p className="text-neutral-100 text-center mt-4">
-                Don’t have an account?{" "}
+                {t("auth.noAccount")}{" "}
                 <Link
                   to="/register"
                   className="text-[#eb6f4b] hover:underline font-medium"
                 >
-                  Register
+                  {t("auth.register")}
                 </Link>
               </p>
             </Form>

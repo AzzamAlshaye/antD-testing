@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import type { FormikHelpers } from "formik";
 import { Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import { useTitle } from "../hooks/useTitle";
 import { useAuth } from "../contexts/AuthContext";
 import { authService } from "../service/AuthService";
@@ -12,7 +13,9 @@ import "react-toastify/dist/ReactToastify.css";
 type RegisterFormValues = SignUpDTO & { confirmPassword: string };
 
 export default function RegisterPage() {
-  useTitle("Register | Tuwaiq");
+  const { t } = useTranslation();
+  useTitle(t("auth.registerPageTitle"));
+
   const { login } = useAuth();
 
   const initialValues: RegisterFormValues = {
@@ -25,23 +28,27 @@ export default function RegisterPage() {
     const errors: Partial<Record<keyof RegisterFormValues, string>> = {};
 
     if (!values.email) {
-      errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
+      errors.email = t("auth.required");
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+    ) {
+      errors.email = t("auth.invalidEmail");
+    } else if (!values.email.toLowerCase().endsWith("@tuwaiq.edu.sa")) {
+      errors.email = t("auth.emailMustEnd");
     }
 
     if (!values.password) {
-      errors.password = "Required";
+      errors.password = t("auth.required");
     } else if (/\s/.test(values.password)) {
-      errors.password = "Password cannot contain spaces";
+      errors.password = t("auth.passwordNoSpaces");
     } else if (values.password.length < 8) {
-      errors.password = "Must be at least 8 characters";
+      errors.password = t("auth.passwordMin8");
     }
 
     if (!values.confirmPassword) {
-      errors.confirmPassword = "Required";
+      errors.confirmPassword = t("auth.required");
     } else if (values.confirmPassword !== values.password) {
-      errors.confirmPassword = "Passwords must match";
+      errors.confirmPassword = t("auth.passwordsMustMatch");
     }
 
     return errors;
@@ -58,10 +65,10 @@ export default function RegisterPage() {
       });
       localStorage.setItem("token", token);
       await login({ email: values.email.trim(), password: values.password });
-      toast.success("Registered and logged in!");
+      toast.success(t("toast.registeredAndLoggedIn"));
       resetForm();
     } catch (err: any) {
-      toast.error(err.response?.data?.message || "Registration failed");
+      toast.error(err.response?.data?.message || t("toast.registrationFailed"));
     } finally {
       setSubmitting(false);
     }
@@ -73,7 +80,7 @@ export default function RegisterPage() {
 
       <div className="bg-neutral-800 shadow-lg rounded-3xl max-w-md w-full p-8">
         <h2 className="text-2xl font-bold text-[#eb6f4b] text-center mb-6">
-          Create Student Account
+          {t("auth.registerTitle")}
         </h2>
 
         <Formik
@@ -88,14 +95,14 @@ export default function RegisterPage() {
                   htmlFor="email"
                   className="block text-neutral-100 font-medium mb-1"
                 >
-                  Email Address (must end with “@tuwaiq.edu.sa”)
+                  {t("auth.emailMustEnd")}
                 </label>
                 <Field
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="you@tuwaiq.edu.sa"
-                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
+                  placeholder={t("auth.emailPlaceholder")}
+                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
                 />
                 <ErrorMessage
                   name="email"
@@ -109,14 +116,14 @@ export default function RegisterPage() {
                   htmlFor="password"
                   className="block text-neutral-100 font-medium mb-1"
                 >
-                  Password
+                  {t("auth.passwordLabel")}
                 </label>
                 <Field
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="********"
-                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
+                  placeholder={t("auth.passwordPlaceholder")}
+                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
                 />
                 <ErrorMessage
                   name="password"
@@ -130,14 +137,14 @@ export default function RegisterPage() {
                   htmlFor="confirmPassword"
                   className="block text-neutral-100 font-medium mb-1"
                 >
-                  Confirm Password
+                  {t("auth.confirmPasswordLabel")}
                 </label>
                 <Field
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
-                  placeholder="Re-enter Password"
-                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
+                  placeholder={t("auth.confirmPasswordPlaceholder")}
+                  className="w-full px-4 py-2 bg-neutral-100 text-neutral-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#eb6f4b]"
                 />
                 <ErrorMessage
                   name="confirmPassword"
@@ -155,23 +162,23 @@ export default function RegisterPage() {
                     : "bg-[#eb6f4b] text-neutral-100 hover:bg-opacity-90"
                 }`}
               >
-                {isSubmitting ? "Registering..." : "Register"}
+                {isSubmitting ? t("auth.registering") : t("auth.register")}
               </button>
 
               <Link
                 to="/"
                 className="w-full block text-center py-2 bg-neutral-100 text-neutral-800 font-semibold rounded-lg hover:bg-neutral-200 transition"
               >
-                Home
+                {t("common.home")}
               </Link>
 
               <p className="mt-6 text-center text-neutral-100">
-                Already have an account?{" "}
+                {t("auth.haveAccount")}{" "}
                 <Link
                   to="/login"
                   className="text-[#eb6f4b] hover:underline font-medium"
                 >
-                  Log In
+                  {t("auth.goToLogin")}
                 </Link>
               </p>
             </Form>

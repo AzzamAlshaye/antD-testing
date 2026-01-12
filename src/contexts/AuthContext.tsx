@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import type { FC, ReactNode } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import i18n from "../i18n";
 import axios from "axios";
 import { authService } from "../service/AuthService";
 import type { SignInDTO } from "../models/Auth.model";
@@ -35,7 +36,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
           // Token invalid/expired: clear and redirect
           localStorage.removeItem("token");
           setAuthenticated(false);
-          toast.info("Session expired. Please log in again.");
+          toast.info(i18n.t("toast.sessionExpired"));
           navigate("/login");
         }
         return Promise.reject(error);
@@ -50,10 +51,10 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const { token } = await authService.signin({ email, password });
       localStorage.setItem("token", token);
       setAuthenticated(true);
-      toast.success("Logged in successfully");
+      toast.success(i18n.t("toast.loggedInSuccess"));
       navigate("/");
     } catch (err: any) {
-      toast.error(err.response?.data?.message || "Login failed");
+      toast.error(err.response?.data?.message || i18n.t("toast.loginFailed"));
     }
   };
 
@@ -63,14 +64,14 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     } catch (err: any) {
       // If token expired, backend returns 401—treat as successful logout
       if (err.response?.status !== 401) {
-        toast.error(err.response?.data?.message || "Logout failed");
+        toast.error(err.response?.data?.message || i18n.t("toast.logoutFailed"));
         return;
       }
     } finally {
       localStorage.removeItem("token");
       setAuthenticated(false);
       setUserRole(undefined);
-      toast.info("Signed out");
+      toast.info(i18n.t("toast.signedOut"));
       navigate("/login");
     }
   };

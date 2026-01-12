@@ -1,12 +1,18 @@
-// src/App.jsx
+import React from "react";
 import "./App.css";
 import AppRouter from "./router/Router";
-function App() {
+
+// i18n must be initialized once before any component uses `useTranslation`
+import "./i18n";
+import { ConfigProvider } from "antd";
+import { useAppLocale } from "./i18n/useAppLocale";
+
+export default function App(): React.JSX.Element {
+  const { antdLocale, isRTL } = useAppLocale();
+
   return (
-    <div>
+    <ConfigProvider locale={antdLocale} direction={isRTL ? "rtl" : "ltr"}>
       <AppRouter />
-    </div>
+    </ConfigProvider>
   );
 }
-
-export default App;

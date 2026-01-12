@@ -7,16 +7,20 @@ import {
 } from "react-router";
 
 import AppNavbar from "../pages/Dashboard/components/TopNavBar";
+import AppFooter from "../pages/Dashboard/components/AppFooter";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
 
 // Layout: Dashboard (extended)
 function DashboardLayout(): React.JSX.Element {
   return (
-    <div className="min-h-dvh bg-[#F9F9F9]">
+    <div className="min-h-dvh bg-[#F9F9F9] flex flex-col">
       <AppNavbar mode="extended" />
-      <main>
+
+      <main className="flex-1">
         <Outlet />
       </main>
+
+      <AppFooter />
     </div>
   );
 }
@@ -24,11 +28,14 @@ function DashboardLayout(): React.JSX.Element {
 // Layout: Default pages (compact)
 function DefaultLayout(): React.JSX.Element {
   return (
-    <div className="min-h-dvh bg-[#F9F9F9]">
+    <div className="min-h-dvh bg-[#F9F9F9] flex flex-col">
       <AppNavbar mode="compact" />
-      <main>
+
+      <main className="flex-1">
         <Outlet />
       </main>
+
+      <AppFooter />
     </div>
   );
 }
