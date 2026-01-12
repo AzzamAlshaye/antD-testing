@@ -1,3 +1,4 @@
+// src/pages/Dashboard/DashboardPage.tsx  (hero removed; only white area content)
 import React from "react";
 import QuickActions, { type QuickActionItem } from "./components/QuickActions";
 import TaskSection from "./components/TaskSection";
@@ -10,8 +11,7 @@ export default function DashboardPage(): React.JSX.Element {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-[16px] lg:px-[40px]">
-      {/* WHITE page area */}
+    <div className="relative z-20 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[40px]">
       <div className="mt-6 rounded-[6px] bg-white p-6 shadow-[0px_4px_24px_rgba(182,182,182,0.13)]">
         <QuickActions title="Quick Actions" actions={quickActions} />
       </div>

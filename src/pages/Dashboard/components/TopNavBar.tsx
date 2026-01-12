@@ -10,7 +10,6 @@ type Props = {
   mode?: NavbarMode;
   variant?: NavbarMode;
   userName?: string;
-  /** ✅ dashboard-only content that should appear inside the hero (title + cards) */
   children?: React.ReactNode;
 };
 
@@ -35,13 +34,12 @@ export default function TopNavBar({
   const { lang, toggleLang } = useAppLocale();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const closeMobile = () => setMobileOpen(false);
 
   return (
     <header
       className={[
-        "relative w-full overflow-hidden",
+        "relative w-full overflow-hidden z-10", // ✅ keep overflow-hidden (like your working version) + put header below page
         "shadow-[0px_2px_8px_rgba(0,0,0,0.15)]",
         isExtended ? "h-[317px]" : "h-[88px]",
       ].join(" ")}
@@ -51,7 +49,7 @@ export default function TopNavBar({
           "linear-gradient(90deg, #0F0F29 0%, #21337B 55%, #13256C 100%)",
       }}
     >
-      {/* background art */}
+      {/* background art (below page content) */}
       <div
         className={[
           "pointer-events-none absolute right-0 z-0 select-none",
@@ -68,8 +66,8 @@ export default function TopNavBar({
         />
       </div>
 
-      {/* NAV ROW */}
-      <div className="relative z-20 flex h-[88px] w-full items-center justify-between px-[30px]">
+      {/* NAV ROW (always on top) */}
+      <div className="relative z-30 flex h-[88px] w-full items-center justify-between px-[30px]">
         <div className="flex items-center gap-10">
           <img
             src="/white-logo.svg"
@@ -154,17 +152,17 @@ export default function TopNavBar({
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU (above everything) */}
       {mobileOpen && (
         <>
           <button
             type="button"
-            className="absolute inset-0 z-20 cursor-default bg-black/30 lg:hidden"
+            className="absolute inset-0 z-40 cursor-default bg-black/30 lg:hidden"
             onClick={closeMobile}
             aria-label="Close menu overlay"
           />
 
-          <div className="absolute left-0 top-[88px] z-30 w-full px-[20px] lg:hidden">
+          <div className="absolute left-0 top-[88px] z-50 w-full px-[20px] lg:hidden">
             <div className="rounded-2xl border border-white/10 bg-[#0F0F29]/95 p-4 shadow-xl backdrop-blur">
               <nav className="flex flex-col gap-2">
                 {navItemKeys.map((key) => (
@@ -213,14 +211,14 @@ export default function TopNavBar({
         </>
       )}
 
-      {/* ✅ DASHBOARD HERO SLOT (inside navbar/hero area) */}
+      {/* HERO SLOT */}
       {isExtended && children ? (
-        <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[30px] pt-[12px]">
+        <div className="relative z-20 mx-auto w-full max-w-[1440px] px-[30px] pt-[12px]">
           {children}
         </div>
       ) : null}
 
-      {/* keep total height correct when extended, even if children is smaller */}
+      {/* keep total height correct when extended */}
       {isExtended && <div className="h-[229px]" />}
     </header>
   );

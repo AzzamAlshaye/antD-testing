@@ -1,3 +1,4 @@
+// src/pages/Dashboard/components/HeroHeader.tsx
 import React from "react";
 import { Typography } from "antd";
 
@@ -5,12 +6,13 @@ const { Title } = Typography;
 
 const HeroHeader: React.FC<{ userName: string }> = ({ userName }) => {
   return (
-    <div className="relative z-[10000] mx-auto w-full max-w-[1440px] px-10">
-      <div className="pt-[44px] pb-6">
+    <div className="relative mx-auto w-full">
+      <div className="pt-[8px] pb-3">
         <Title
           level={2}
-          className="!m-0 text-white"
+          className="!m-0 !text-white"
           style={{
+            color: "#fff",
             fontFamily: "Rubik",
             fontWeight: 600,
             fontSize: 35,

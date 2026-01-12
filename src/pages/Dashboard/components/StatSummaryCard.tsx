@@ -35,18 +35,35 @@ const StatSummaryCard: React.FC<Props> = ({
       }}
     >
       <div className="flex items-center gap-6 p-6">
-        <DonutChart value={centerValue} label={centerLabel} mode={ringMode} colors={ringColors} />
+        <DonutChart
+          value={centerValue}
+          label={centerLabel}
+          mode={ringMode}
+          colors={ringColors}
+        />
         <div className="flex-1">
           <div className="grid gap-2">
             {items.map((it, idx) => (
-              <div key={it.label} className="grid grid-cols-[1fr_auto] items-center gap-2">
+              <div
+                key={it.label}
+                className="grid grid-cols-[1fr_auto] items-center gap-2"
+              >
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full" style={{ background: it.color }} />
-                  <span className="text-[12px] text-black" style={{ fontFamily: "Rubik" }}>
+                  <span
+                    className="h-2 w-2 rounded-full"
+                    style={{ background: it.color }}
+                  />
+                  <span
+                    className="text-[12px] text-black"
+                    style={{ fontFamily: "Rubik" }}
+                  >
                     {it.label}
                   </span>
                 </div>
-                <span className="text-[12px] font-semibold text-black" style={{ fontFamily: "Rubik" }}>
+                <span
+                  className="text-[12px] font-semibold text-black"
+                  style={{ fontFamily: "Rubik" }}
+                >
                   {it.value}
                 </span>
                 {idx !== items.length - 1 && (

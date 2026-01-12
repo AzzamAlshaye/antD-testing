@@ -9,19 +9,18 @@ import {
 import AppNavbar from "../pages/Dashboard/components/TopNavBar";
 import AppFooter from "../pages/Dashboard/components/AppFooter";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
-import DashboardHero from "../pages/Dashboard/components/DashboardHero"; // ✅ add
+import DashboardHero from "../pages/Dashboard/components/DashboardHero";
 
-// Layout: Dashboard (extended)
+// Layout: Dashboard (extended feel: compact nav + hero inside navbar)
 function DashboardLayout(): React.JSX.Element {
   return (
-    <div className="min-h-dvh bg-[#F9F9F9] flex flex-col">
-      {/* ✅ Hero content goes INSIDE navbar */}
+    <div className="relative min-h-dvh bg-[#F9F9F9] flex flex-col">
       <AppNavbar mode="extended" userName="Ahmed">
         <DashboardHero />
       </AppNavbar>
 
-      {/* ✅ pull the page up slightly so it touches the hero/cards like your screenshot */}
-      <main className="flex-1 -mt-[18px]">
+      {/* ✅ Make page content sit ABOVE header art, while still overlapping */}
+      <main className="relative z-20 flex-1 -mt-[18px]">
         <Outlet />
       </main>
 
@@ -33,10 +32,11 @@ function DashboardLayout(): React.JSX.Element {
 // Layout: Default pages (compact)
 function DefaultLayout(): React.JSX.Element {
   return (
-    <div className="min-h-dvh bg-[#F9F9F9] flex flex-col">
+    <div className="relative min-h-dvh bg-[#F9F9F9] flex flex-col">
       <AppNavbar mode="compact" />
 
-      <main className="flex-1">
+      {/* ✅ Same rule here for consistency */}
+      <main className="relative z-20 flex-1">
         <Outlet />
       </main>
 
@@ -48,14 +48,12 @@ function DefaultLayout(): React.JSX.Element {
 const router = createBrowserRouter([
   { path: "/", element: <Navigate to="/dashboard" replace /> },
 
-  // /dashboard uses extended navbar
   {
     path: "/dashboard",
     element: <DashboardLayout />,
     children: [{ index: true, element: <DashboardPage /> }],
   },
 
-  // everything else uses compact navbar
   {
     element: <DefaultLayout />,
     children: [

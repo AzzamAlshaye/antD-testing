@@ -1,19 +1,14 @@
+// src/pages/Dashboard/components/DashboardHero.tsx
 import React from "react";
 import HeroHeader from "./HeroHeader";
 import DonutChart from "./DonutChart";
 
 export default function DashboardHero(): React.JSX.Element {
   return (
-    // ✅ no extra padding here (TopNavBar controls the spacing)
     <div className="w-full">
-      {/* Greeting */}
-      <div className="pt-0">
-        <HeroHeader userName="Ahmed" />
-      </div>
+      <HeroHeader userName="Ahmed" />
 
-      {/* Cards row (kept high like Figma) */}
-      <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {/* Card 1 */}
+      <div className="mt-3 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="rounded-[10px] bg-white p-6 shadow-[0px_4px_24px_rgba(182,182,182,0.13)]">
           <div className="flex items-center gap-6">
             <DonutChart
@@ -34,7 +29,6 @@ export default function DashboardHero(): React.JSX.Element {
           </div>
         </div>
 
-        {/* Card 2 */}
         <div className="rounded-[10px] bg-white p-6 shadow-[0px_4px_24px_rgba(182,182,182,0.13)]">
           <div className="flex items-center gap-6">
             <DonutChart
