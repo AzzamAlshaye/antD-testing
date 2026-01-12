@@ -31,7 +31,10 @@ const DonutChart: React.FC<Props> = ({
   const segLen = c / segCount - gap;
 
   return (
-    <div className="relative grid place-items-center" style={{ width: size, height: size }}>
+    <div
+      className="relative grid place-items-center"
+      style={{ width: size, height: size }}
+    >
       <svg width={size} height={size} className="rotate-[-90deg]">
         {/* track */}
         <circle
@@ -87,10 +90,16 @@ const DonutChart: React.FC<Props> = ({
 
       {/* center text */}
       <div className="absolute inset-0 grid place-items-center text-center">
-        <div className="text-[24px] font-bold leading-[24px]" style={{ fontFamily: "Rubik" }}>
+        <div
+          className="text-[24px] font-bold leading-[24px]"
+          style={{ fontFamily: "Rubik" }}
+        >
           {value}
         </div>
-        <div className="mt-1 text-[12px] text-[#76777C]" style={{ fontFamily: "Rubik" }}>
+        <div
+          className="mt-1 text-[12px] text-[#76777C]"
+          style={{ fontFamily: "Rubik" }}
+        >
           {label}
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React from "react";
-
 import QuickActions, { type QuickActionItem } from "./components/QuickActions";
 import TaskSection from "./components/TaskSection";
 
@@ -11,18 +10,14 @@ export default function DashboardPage(): React.JSX.Element {
   ];
 
   return (
-    <div className="min-h-dvh bg-[#F9F9F9]">
-      {/* Page content */}
-      <div className="mx-auto w-full max-w-[1440px] px-[16px] lg:px-[40px]">
-        {/* QuickActions section */}
-        <div className="mt-6 rounded-[6px] bg-white p-6 shadow-[0px_4px_24px_rgba(182,182,182,0.13)]">
-          <QuickActions title="Quick Actions" actions={quickActions} />
-        </div>
+    <div className="mx-auto w-full max-w-[1440px] px-[16px] lg:px-[40px]">
+      {/* WHITE page area */}
+      <div className="mt-6 rounded-[6px] bg-white p-6 shadow-[0px_4px_24px_rgba(182,182,182,0.13)]">
+        <QuickActions title="Quick Actions" actions={quickActions} />
+      </div>
 
-        {/* Task section */}
-        <div className="mt-7">
-          <TaskSection />
-        </div>
+      <div className="mt-7">
+        <TaskSection />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ const { Title } = Typography;
 
 const HeroHeader: React.FC<{ userName: string }> = ({ userName }) => {
   return (
-    <div className="relative z-10 mx-auto w-full max-w-[1440px] px-10">
+    <div className="relative z-[10000] mx-auto w-full max-w-[1440px] px-10">
       <div className="pt-[44px] pb-6">
         <Title
           level={2}

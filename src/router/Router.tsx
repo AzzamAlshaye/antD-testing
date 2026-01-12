@@ -9,14 +9,19 @@ import {
 import AppNavbar from "../pages/Dashboard/components/TopNavBar";
 import AppFooter from "../pages/Dashboard/components/AppFooter";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
+import DashboardHero from "../pages/Dashboard/components/DashboardHero"; // ✅ add
 
 // Layout: Dashboard (extended)
 function DashboardLayout(): React.JSX.Element {
   return (
     <div className="min-h-dvh bg-[#F9F9F9] flex flex-col">
-      <AppNavbar mode="extended" />
+      {/* ✅ Hero content goes INSIDE navbar */}
+      <AppNavbar mode="extended" userName="Ahmed">
+        <DashboardHero />
+      </AppNavbar>
 
-      <main className="flex-1">
+      {/* ✅ pull the page up slightly so it touches the hero/cards like your screenshot */}
+      <main className="flex-1 -mt-[18px]">
         <Outlet />
       </main>
 

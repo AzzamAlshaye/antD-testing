@@ -10,6 +10,8 @@ type Props = {
   mode?: NavbarMode;
   variant?: NavbarMode;
   userName?: string;
+  /** ✅ dashboard-only content that should appear inside the hero (title + cards) */
+  children?: React.ReactNode;
 };
 
 const navItemKeys = [
@@ -24,6 +26,7 @@ export default function TopNavBar({
   mode,
   variant,
   userName = "User Name",
+  children,
 }: Props): React.JSX.Element {
   const resolvedMode: NavbarMode = mode ?? variant ?? "extended";
   const isExtended = resolvedMode === "extended";
@@ -48,6 +51,7 @@ export default function TopNavBar({
           "linear-gradient(90deg, #0F0F29 0%, #21337B 55%, #13256C 100%)",
       }}
     >
+      {/* background art */}
       <div
         className={[
           "pointer-events-none absolute right-0 z-0 select-none",
@@ -64,7 +68,8 @@ export default function TopNavBar({
         />
       </div>
 
-      <div className="relative z-10 flex h-[88px] w-full items-center justify-between px-[30px]">
+      {/* NAV ROW */}
+      <div className="relative z-20 flex h-[88px] w-full items-center justify-between px-[30px]">
         <div className="flex items-center gap-10">
           <img
             src="/white-logo.svg"
@@ -87,7 +92,7 @@ export default function TopNavBar({
           </nav>
         </div>
 
-        <div className="flex items-center gap-4 mr-[30px]">
+        <div className="mr-[30px] flex items-center gap-4">
           <button
             type="button"
             className="hidden items-center gap-2 text-[#F9F9F9] opacity-90 hover:opacity-100 md:flex"
@@ -149,6 +154,7 @@ export default function TopNavBar({
         </div>
       </div>
 
+      {/* MOBILE MENU */}
       {mobileOpen && (
         <>
           <button
@@ -207,6 +213,14 @@ export default function TopNavBar({
         </>
       )}
 
+      {/* ✅ DASHBOARD HERO SLOT (inside navbar/hero area) */}
+      {isExtended && children ? (
+        <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[30px] pt-[12px]">
+          {children}
+        </div>
+      ) : null}
+
+      {/* keep total height correct when extended, even if children is smaller */}
       {isExtended && <div className="h-[229px]" />}
     </header>
   );
