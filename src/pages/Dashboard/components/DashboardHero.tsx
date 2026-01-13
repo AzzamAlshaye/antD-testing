@@ -15,7 +15,7 @@ export default function DashboardHero(): React.JSX.Element {
               mode="multi"
               value={63}
               label="Tasks"
-              colors={["#1F49FF", "#00B3C6", "#80C62A", "#FFD000", "#E0004D"]}
+              colors={["#FF8A00", "#7C3AED", "#1F49FF", "#80C62A"]}
               size={96}
               strokeWidth={10}
             />

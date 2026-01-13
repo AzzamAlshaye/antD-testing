@@ -8,7 +8,7 @@ import {
 
 import AppNavbar from "../pages/Dashboard/components/TopNavBar";
 import AppFooter from "../pages/Dashboard/components/AppFooter";
-import DashboardPage from "../pages/Dashboard/DashboardPage";
+import DashboardPage from "../pages/Dashboard";
 import RouteGuard from "./routeGuard";
 import { paths } from "./paths";
 

@@ -24,10 +24,11 @@ const DonutChart: React.FC<Props> = ({
 }) => {
   const r = (size - strokeWidth) / 2;
   const c = 2 * Math.PI * r;
+  const ringColors = colors.length > 0 ? colors : ["#1F49FF"];
 
   // segment rendering
-  const segCount = mode === "multi" ? Math.max(4, colors.length) : 2;
-  const gap = 6; // visual gap
+  const segCount = mode === "multi" ? ringColors.length : 2;
+  const gap = mode === "multi" ? 2 : 0; // subtle separation between segments
   const segLen = c / segCount - gap;
 
   return (
@@ -47,7 +48,7 @@ const DonutChart: React.FC<Props> = ({
         />
 
         {mode === "multi" ? (
-          colors.map((col, i) => (
+          ringColors.map((col, i) => (
             <circle
               key={col + i}
               cx={size / 2}
@@ -56,7 +57,7 @@ const DonutChart: React.FC<Props> = ({
               fill="none"
               stroke={col}
               strokeWidth={strokeWidth}
-              strokeLinecap="round"
+              strokeLinecap="butt"
               strokeDasharray={`${segLen} ${c - segLen}`}
               strokeDashoffset={-(c / segCount) * i}
             />
@@ -68,7 +69,7 @@ const DonutChart: React.FC<Props> = ({
               cy={size / 2}
               r={r}
               fill="none"
-              stroke={colors[0]}
+              stroke={ringColors[0]}
               strokeWidth={strokeWidth}
               strokeLinecap="round"
             />
@@ -78,7 +79,7 @@ const DonutChart: React.FC<Props> = ({
               cy={size / 2}
               r={r}
               fill="none"
-              stroke={colors[1] ?? colors[0]}
+              stroke={ringColors[1] ?? ringColors[0]}
               strokeWidth={strokeWidth}
               strokeLinecap="round"
               strokeDasharray={`${c * 0.08} ${c}`}

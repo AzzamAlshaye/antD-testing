@@ -1,4 +1,4 @@
-// src/pages/Dashboard/DashboardPage.tsx  (hero removed; only white area content)
+// src/pages/Dashboard/index.tsx (hero removed; only white area content)
 import React from "react";
 import QuickActions, { type QuickActionItem } from "./components/QuickActions";
 import TaskSection from "./components/TaskSection";
