@@ -20,9 +20,9 @@ type Props = {
 };
 
 const iconMap: Record<QuickActionItem["icon"], React.ReactNode> = {
-  plus: <PlusCircleOutlined style={{ fontSize: 22, color: "#2F5BFF" }} />,
-  refresh: <ReloadOutlined style={{ fontSize: 22, color: "#2F5BFF" }} />,
-  layers: <AppstoreOutlined style={{ fontSize: 22, color: "#2F5BFF" }} />,
+  plus: <PlusCircleOutlined style={{ fontSize: 24, color: "#4166F5" }} />,
+  refresh: <ReloadOutlined style={{ fontSize: 24, color: "#4166F5" }} />,
+  layers: <AppstoreOutlined style={{ fontSize: 24, color: "#4166F5" }} />,
 };
 
 const QuickActions: React.FC<Props> = ({ title, actions }) => {
@@ -48,11 +48,11 @@ const QuickActions: React.FC<Props> = ({ title, actions }) => {
           <button
             key={a.key}
             type="button"
-            className="flex h-[110px] flex-col items-center justify-center gap-3 rounded-[8px] bg-white shadow-[0px_6px_20px_rgba(182,182,182,0.12)]"
+            className="flex h-[124px] flex-col items-center justify-center gap-3 rounded-[8px] border border-[#F2F2F2] bg-white shadow-[0px_6px_20px_rgba(182,182,182,0.1)]"
           >
             {iconMap[a.icon]}
             <span
-              className="text-[12px] font-medium text-[#2F5BFF]"
+              className="text-[12px] font-medium text-[#4166F5]"
               style={{ fontFamily: "Inter" }}
             >
               {a.label}
