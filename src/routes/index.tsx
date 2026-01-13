@@ -9,15 +9,14 @@ import {
 import AppNavbar from "../pages/Dashboard/components/TopNavBar";
 import AppFooter from "../pages/Dashboard/components/AppFooter";
 import DashboardPage from "../pages/Dashboard/DashboardPage";
-import DashboardHero from "../pages/Dashboard/components/DashboardHero";
+import RouteGuard from "./routeGuard";
+import { paths } from "./paths";
 
 // Layout: Dashboard (extended feel: compact nav + hero inside navbar)
 function DashboardLayout(): React.JSX.Element {
   return (
     <div className="relative min-h-dvh bg-[#F9F9F9] flex flex-col">
-      <AppNavbar mode="extended" userName="Ahmed">
-        <DashboardHero />
-      </AppNavbar>
+      <AppNavbar />
 
       {/* ✅ Make page content sit ABOVE header art, while still overlapping */}
       <main className="relative z-20 flex-1 -mt-[18px]">
@@ -33,7 +32,7 @@ function DashboardLayout(): React.JSX.Element {
 function DefaultLayout(): React.JSX.Element {
   return (
     <div className="relative min-h-dvh bg-[#F9F9F9] flex flex-col">
-      <AppNavbar mode="compact" />
+      <AppNavbar />
 
       {/* ✅ Same rule here for consistency */}
       <main className="relative z-20 flex-1">
@@ -46,16 +45,24 @@ function DefaultLayout(): React.JSX.Element {
 }
 
 const router = createBrowserRouter([
-  { path: "/", element: <Navigate to="/dashboard" replace /> },
+  { path: paths.root, element: <Navigate to={paths.dashboard} replace /> },
 
   {
-    path: "/dashboard",
-    element: <DashboardLayout />,
+    path: paths.dashboard,
+    element: (
+      <RouteGuard>
+        <DashboardLayout />
+      </RouteGuard>
+    ),
     children: [{ index: true, element: <DashboardPage /> }],
   },
 
   {
-    element: <DefaultLayout />,
+    element: (
+      <RouteGuard>
+        <DefaultLayout />
+      </RouteGuard>
+    ),
     children: [
       // examples:
       // { path: "customers", element: <CustomersPage /> },

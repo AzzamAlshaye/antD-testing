@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import AppRouter from "./routes/Router";
+import AppRouter from "./routes";
 
 // i18n must be initialized once before any component uses `useTranslation`
 import "./config/i18n";

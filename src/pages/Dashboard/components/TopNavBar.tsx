@@ -2,16 +2,9 @@ import React from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
 import { useAppLocale } from "../../../i18n/useAppLocale";
-
-type NavbarMode = "extended" | "compact";
-
-type Props = {
-  mode?: NavbarMode;
-  variant?: NavbarMode;
-  userName?: string;
-  children?: React.ReactNode;
-};
+import DashboardHero from "./DashboardHero";
 
 const navItemKeys = [
   "nav.home",
@@ -21,17 +14,12 @@ const navItemKeys = [
   "nav.systemManagement",
 ] as const;
 
-export default function TopNavBar({
-  mode,
-  variant,
-  userName = "User Name",
-  children,
-}: Props): React.JSX.Element {
-  const resolvedMode: NavbarMode = mode ?? variant ?? "extended";
-  const isExtended = resolvedMode === "extended";
-
+export default function TopNavBar(): React.JSX.Element {
   const { t } = useTranslation();
   const { lang, toggleLang } = useAppLocale();
+  const location = useLocation();
+  const isExtended = location.pathname === "/dashboard";
+  const userName = "User Name";
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const closeMobile = () => setMobileOpen(false);
@@ -212,9 +200,9 @@ export default function TopNavBar({
       )}
 
       {/* HERO SLOT */}
-      {isExtended && children ? (
+      {isExtended ? (
         <div className="relative z-20 mx-auto w-full max-w-[1440px] px-[30px] pt-[12px]">
-          {children}
+          <DashboardHero />
         </div>
       ) : null}
 
