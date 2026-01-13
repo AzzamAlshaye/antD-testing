@@ -4,7 +4,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
 import { useAppLocale } from "../../../i18n/useAppLocale";
-import DashboardHero from "./DashboardHero";
+import HeroHeader from "./HeroHeader";
 
 const navItemKeys = [
   "nav.home",
@@ -202,7 +202,7 @@ export default function TopNavBar(): React.JSX.Element {
       {/* HERO SLOT */}
       {isExtended ? (
         <div className="relative z-20 mx-auto w-full max-w-[1440px] px-[30px] pt-[12px]">
-          <DashboardHero />
+          <HeroHeader userName={userName} />
         </div>
       ) : null}
 

@@ -1,13 +1,10 @@
 // src/pages/Dashboard/components/DashboardHero.tsx
 import React from "react";
-import HeroHeader from "./HeroHeader";
 import DonutChart from "./DonutChart";
 
 export default function DashboardHero(): React.JSX.Element {
   return (
     <div className="w-full">
-      <HeroHeader userName="Ahmed" />
-
       <div className="mt-3 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="rounded-[10px] bg-white p-6 shadow-[0px_4px_24px_rgba(182,182,182,0.13)]">
           <div className="flex items-center gap-6">
