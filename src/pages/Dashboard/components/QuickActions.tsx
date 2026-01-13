@@ -20,16 +20,16 @@ type Props = {
 };
 
 const iconMap: Record<QuickActionItem["icon"], React.ReactNode> = {
-  plus: <PlusCircleOutlined style={{ fontSize: 28, color: "#4166F5" }} />,
-  refresh: <ReloadOutlined style={{ fontSize: 28, color: "#4166F5" }} />,
-  layers: <AppstoreOutlined style={{ fontSize: 28, color: "#4166F5" }} />,
+  plus: <PlusCircleOutlined style={{ fontSize: 22, color: "#2F5BFF" }} />,
+  refresh: <ReloadOutlined style={{ fontSize: 22, color: "#2F5BFF" }} />,
+  layers: <AppstoreOutlined style={{ fontSize: 22, color: "#2F5BFF" }} />,
 };
 
 const QuickActions: React.FC<Props> = ({ title, actions }) => {
   return (
     <div className="min-w-0">
-      <div className="mb-5 flex items-center justify-between">
-        <div className="text-[20px] font-bold" style={{ fontFamily: "Rubik" }}>
+      <div className="mb-4 flex items-center justify-between">
+        <div className="text-[16px] font-bold" style={{ fontFamily: "Rubik" }}>
           {title}
         </div>
 
@@ -37,22 +37,22 @@ const QuickActions: React.FC<Props> = ({ title, actions }) => {
           type="link"
           icon={<EditOutlined />}
           className="!px-0"
-          style={{ color: "#0052CC", fontFamily: "Inter" }}
+          style={{ color: "#0052CC", fontFamily: "Inter", fontSize: 12 }}
         >
           Customise
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {actions.map((a) => (
           <button
             key={a.key}
             type="button"
-            className="flex h-[150px] flex-col items-center justify-center gap-4 rounded-[6px] bg-white shadow-[0px_4px_24px_rgba(182,182,182,0.13)]"
+            className="flex h-[110px] flex-col items-center justify-center gap-3 rounded-[8px] bg-white shadow-[0px_6px_20px_rgba(182,182,182,0.12)]"
           >
             {iconMap[a.icon]}
             <span
-              className="text-[13px] font-medium text-[#4166F5]"
+              className="text-[12px] font-medium text-[#2F5BFF]"
               style={{ fontFamily: "Inter" }}
             >
               {a.label}

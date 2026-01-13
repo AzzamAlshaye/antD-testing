@@ -2,6 +2,9 @@
 import React from "react";
 import QuickActions, { type QuickActionItem } from "./components/QuickActions";
 import DashboardHero from "./components/DashboardHero";
+import RecentlyVisited, {
+  type RecentlyItem,
+} from "./components/RecentlyVisited";
 import TaskSection from "./components/TaskSection";
 
 export default function DashboardPage(): React.JSX.Element {
@@ -9,6 +12,29 @@ export default function DashboardPage(): React.JSX.Element {
     { key: "create-complaint", label: "Create Complains", icon: "plus" },
     { key: "create-seasons", label: "Create Seasons", icon: "refresh" },
     { key: "create-group", label: "Create Group", icon: "layers" },
+  ];
+  const recentlyItems: RecentlyItem[] = [
+    {
+      id: "rv-1",
+      org: "Ministry of Health",
+      type: "Issue",
+      reporter: "Reporter name",
+      priority: "High",
+    },
+    {
+      id: "rv-2",
+      org: "Ministry of Health",
+      type: "Response",
+      reporter: "Reporter name",
+      priority: "High",
+    },
+    {
+      id: "rv-3",
+      org: "Ministry of Health",
+      type: "Issue",
+      reporter: "Reporter name",
+      priority: "High",
+    },
   ];
 
   return (
@@ -18,7 +44,17 @@ export default function DashboardPage(): React.JSX.Element {
       </div>
 
       <div className="mt-6 rounded-[6px] bg-white p-6 shadow-[0px_4px_24px_rgba(182,182,182,0.13)]">
-        <QuickActions title="Quick Actions" actions={quickActions} />
+        <div className="grid gap-6 lg:grid-cols-[1fr_auto_1fr]">
+          <div>
+            <QuickActions title="Quick Actions" actions={quickActions} />
+          </div>
+
+          <div className="hidden w-px bg-[#F0F0F0] lg:block" />
+
+          <div>
+            <RecentlyVisited title="Recently visited" items={recentlyItems} />
+          </div>
+        </div>
       </div>
 
       <div className="mt-7">
