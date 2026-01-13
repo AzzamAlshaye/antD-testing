@@ -17,7 +17,7 @@ export default function DashboardHero(): React.JSX.Element {
               strokeWidth={10}
             />
 
-            <div className="flex-1">
+            <div className="flex-1 divide-y divide-[#F0F0F0]">
               <Row label="Issues" value="12" dot="#FF8A00" />
               <Row label="Pending Responses" value="1" dot="#7C3AED" />
               <Row label="Support Requests" value="18" dot="#1F49FF" />
@@ -37,7 +37,7 @@ export default function DashboardHero(): React.JSX.Element {
               strokeWidth={10}
             />
 
-            <div className="flex-1">
+            <div className="flex-1 divide-y divide-[#F0F0F0]">
               <Row label="Assigned" value="12" dot="#1F49FF" />
               <Row label="Unassigned" value="1" dot="#00B3C6" />
             </div>

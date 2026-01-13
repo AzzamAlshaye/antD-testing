@@ -82,23 +82,23 @@ const DonutChart: React.FC<Props> = ({
               stroke={ringColors[1] ?? ringColors[0]}
               strokeWidth={strokeWidth}
               strokeLinecap="round"
-              strokeDasharray={`${c * 0.08} ${c}`}
-              strokeDashoffset={-c * 0.2}
+              strokeDasharray={`${c * 0.12} ${c}`}
+              strokeDashoffset={-c * 0.25}
             />
           </>
         )}
       </svg>
 
       {/* center text */}
-      <div className="absolute inset-0 grid place-items-center text-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2px] text-center">
         <div
-          className="text-[24px] font-bold leading-[24px]"
+          className="text-[22px] font-bold leading-[22px]"
           style={{ fontFamily: "Rubik" }}
         >
           {value}
         </div>
         <div
-          className="mt-1 text-[12px] text-[#76777C]"
+          className="text-[11px] leading-[12px] text-[#76777C]"
           style={{ fontFamily: "Rubik" }}
         >
           {label}
