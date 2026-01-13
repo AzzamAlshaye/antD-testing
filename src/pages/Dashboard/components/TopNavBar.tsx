@@ -49,10 +49,7 @@ export default function TopNavBar({
           "linear-gradient(90deg, #0F0F29 0%, #21337B 55%, #13256C 100%)",
       }}
     >
-<<<<<<< HEAD
       {/* background art (below page content) */}
-=======
->>>>>>> 03b3e17 (compact nav svg fixed)
       <div
         className={[
           "pointer-events-none absolute right-0 z-0 select-none",
@@ -93,11 +90,7 @@ export default function TopNavBar({
           </nav>
         </div>
 
-<<<<<<< HEAD
         <div className="mr-[30px] flex items-center gap-4">
-=======
-        <div className="flex items-center gap-4 mr-[30px]">
->>>>>>> 03b3e17 (compact nav svg fixed)
           <button
             type="button"
             className="hidden items-center gap-2 text-[#F9F9F9] opacity-90 hover:opacity-100 md:flex"

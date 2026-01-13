@@ -1,0 +1,61 @@
+{
+  "app": {
+    "name": "Pulse"
+  },
+  "common": {
+    "home": "الرئيسية",
+    "search": "بحث",
+    "language": "اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "loading": "جارٍ التحميل..."
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "backlog": "المهام المتراكمة",
+    "seasons": "المواسم",
+    "customers": "العملاء",
+    "systemManagement": "إدارة النظام"
+  },
+  "auth": {
+    "loginTitle": "تسجيل الدخول",
+    "loginPageTitle": "تسجيل الدخول | طويق",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "you@tuwaiq.edu.sa",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "********",
+    "loginButton": "دخول",
+    "loggingIn": "جارٍ تسجيل الدخول...",
+    "noAccount": "ليس لديك حساب؟",
+    "register": "إنشاء حساب",
+    "registerTitle": "إنشاء حساب",
+    "registerPageTitle": "إنشاء حساب | طويق",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "goToLogin": "تسجيل الدخول",
+    "required": "مطلوب",
+    "invalidEmail": "بريد إلكتروني غير صالح",
+    "emailMustEnd": "البريد الإلكتروني (يجب أن ينتهي بـ “@tuwaiq.edu.sa”)",
+    "confirmPasswordLabel": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+    "registering": "جارٍ إنشاء الحساب...",
+    "passwordNoSpaces": "كلمة المرور لا يمكن أن تحتوي على مسافات",
+    "passwordMin8": "يجب ألا تقل عن 8 أحرف",
+    "passwordsMustMatch": "كلمتا المرور غير متطابقتين"
+  },
+  "toast": {
+    "loggedInRedirecting": "تم تسجيل الدخول! جارٍ التحويل…",
+    "loggedInSuccess": "تم تسجيل الدخول بنجاح",
+    "loginFailed": "فشل تسجيل الدخول",
+    "sessionExpired": "انتهت الجلسة. الرجاء تسجيل الدخول مرة أخرى.",
+    "logoutFailed": "فشل تسجيل الخروج",
+    "signedOut": "تم تسجيل الخروج",
+    "registeredAndLoggedIn": "تم إنشاء الحساب وتسجيل الدخول!",
+    "registrationFailed": "فشل إنشاء الحساب"
+  },
+  "footer": {
+    "brandAlt": "Pulse",
+    "siteAlt": "الموقع",
+    "logoLabel": "الشعار",
+    "copyright": "© 2025 | Placeholder. جميع الحقوق محفوظة."
+  }
+}

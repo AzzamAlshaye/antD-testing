@@ -1,0 +1,33 @@
+/* Only minimal overrides to match Figma tabs underline and remove antd extra padding */
+.pulse-tabs .ant-tabs-nav::before {
+  border-bottom: none !important;
+}
+
+.pulse-tabs .ant-tabs-ink-bar {
+  height: 2px !important;
+  background: #4166f5 !important;
+}
+
+.pulse-tabs .ant-tabs-tab {
+  padding: 0 0 8px 0 !important;
+}
+
+.pulse-tabs .ant-tabs-tab + .ant-tabs-tab {
+  margin-left: 40px !important;
+}
+
+.pulse-tabs .ant-tabs-tab-btn {
+  font-family: Rubik, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif !important;
+  font-size: 14px !important;
+}
+
+.pulse-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #4166f5 !important;
+  font-weight: 600 !important;
+}
+
+.pulse-tabs .ant-tabs-tab-btn {
+  color: #484d6c !important;
+  font-weight: 400 !important;
+}
