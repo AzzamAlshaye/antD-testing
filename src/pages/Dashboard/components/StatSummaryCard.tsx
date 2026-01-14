@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Divider } from "antd";
+import { Card } from "antd";
 import DonutChart from "./DonutChart";
 
 export type StatItem = {
@@ -9,7 +9,6 @@ export type StatItem = {
 };
 
 type Props = {
-  title: string;
   centerValue: number;
   centerLabel: string;
   ringMode: "multi" | "single";
@@ -18,7 +17,6 @@ type Props = {
 };
 
 const StatSummaryCard: React.FC<Props> = ({
-  title,
   centerValue,
   centerLabel,
   ringMode,
