@@ -1,12 +1,11 @@
-// src/context/AuthContext.tsx
 import { createContext, useContext, useState, useEffect } from "react";
 import type { FC, ReactNode } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import i18n from "../config/i18n";
 import axios from "axios";
-import { authService } from "../services/AuthService";
-import type { SignInDTO } from "../interfaces/IAuth";
+import i18n from "@config/i18n";
+import { authService } from "@services/AuthService";
+import type { SignInDTO } from "@interfaces/IAuth";
 
 interface AuthContextType {
   login: (data: SignInDTO) => Promise<void>;
@@ -62,7 +61,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     try {
       await authService.signout();
     } catch (err: any) {
-      // If token expired, backend returns 401—treat as successful logout
+      // If token expired, backend returns 401 treat as successful logout
       if (err.response?.status !== 401) {
         toast.error(err.response?.data?.message || i18n.t("toast.logoutFailed"));
         return;

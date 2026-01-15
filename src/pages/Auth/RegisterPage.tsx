@@ -4,10 +4,10 @@ import type { FormikHelpers } from "formik";
 import { Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { useTitle } from "../hooks/useTitle";
-import { useAuth } from "../contexts/AuthContext";
-import { authService } from "../service/AuthService";
-import type { SignUpDTO, AuthResponse } from "../models/Auth.model";
+import { useTitle } from "@hooks/useTitle";
+import { useAuth } from "@context/AuthContext";
+import { authService } from "@services/AuthService";
+import type { SignUpDTO, AuthResponse } from "@interfaces/IAuth";
 import "react-toastify/dist/ReactToastify.css";
 
 type RegisterFormValues = SignUpDTO & { confirmPassword: string };

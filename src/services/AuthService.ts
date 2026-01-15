@@ -5,7 +5,7 @@ import type {
   SignInDTO,
   AuthResponse,
   SignOutResponse,
-} from "../interfaces/IAuth";
+} from "@interfaces/IAuth";
 
 export const authService = {
   signup,
@@ -26,6 +26,6 @@ async function signin(data: SignInDTO): Promise<AuthResponse> {
 async function signout(): Promise<SignOutResponse> {
   const res = await apiClient.post<SignOutResponse>("/auth/signout");
   // clear token locally
-  localStorage.removeItem("jwt");
+  localStorage.removeItem("token");
   return res.data;
 }

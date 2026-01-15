@@ -6,11 +6,11 @@ import {
   Outlet,
 } from "react-router";
 
-import AppNavbar from "../pages/Dashboard/components/TopNavBar";
-import AppFooter from "../pages/Dashboard/components/AppFooter";
-import DashboardPage from "../pages/Dashboard";
-import RouteGuard from "./routeGuard";
-import { paths } from "./paths";
+import AppNavbar from "@pages/Dashboard/components/TopNavBar";
+import AppFooter from "@pages/Dashboard/components/AppFooter";
+import DashboardPage from "@pages/Dashboard";
+import RouteGuard from "@routes/routeGuard";
+import { paths } from "@routes/paths";
 
 // Layout: Dashboard (extended feel: compact nav + hero inside navbar)
 function DashboardLayout(): React.JSX.Element {

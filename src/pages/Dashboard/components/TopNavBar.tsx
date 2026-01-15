@@ -3,7 +3,7 @@ import { DownOutlined } from "@ant-design/icons";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
-import { useAppLocale } from "../../../i18n/useAppLocale";
+import { useAppLocale } from "@config/useAppLocale";
 import HeroHeader from "./HeroHeader";
 
 const navItemKeys = [

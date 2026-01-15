@@ -5,9 +5,9 @@ import type { FormikHelpers } from "formik";
 import { Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { useTitle } from "../hooks/useTitle";
-import { useAuth } from "../contexts/AuthContext";
-import type { SignInDTO } from "../models/Auth.model";
+import { useTitle } from "@hooks/useTitle";
+import { useAuth } from "@context/AuthContext";
+import type { SignInDTO } from "@interfaces/IAuth";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginPage() {

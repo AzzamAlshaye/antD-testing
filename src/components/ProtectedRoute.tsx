@@ -1,7 +1,6 @@
-// src/components/ProtectedRoute.tsx
 import React from "react";
 import { Navigate } from "react-router";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "@context/AuthContext";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -16,7 +15,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   }
 
   if (!isAuthenticated) {
-    // after loading, no token → redirect
+    // after loading, no token: redirect
     return <Navigate to="/login" replace />;
   }
 
