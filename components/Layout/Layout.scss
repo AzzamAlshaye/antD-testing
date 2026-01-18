@@ -1,0 +1,17 @@
+.menu {
+  &:global(.ant-menu-inline .ant-menu-item) {
+    @apply h-14;
+  }
+
+  &:global(.ant-menu-dark .ant-menu-item-selected) {
+    ::before {
+      // @apply content-[''] absolute inset-y-0 start-0 bg-secondary w-1;
+    }
+  }
+}
+
+.breadcrumb {
+  & :global(.ant-breadcrumb-link a) {
+    @apply text-[#595959] hover:bg-transparent hover:text-black;
+  }
+}
