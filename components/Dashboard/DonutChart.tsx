@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 type Props = {
   size?: number;
   strokeWidth?: number;
   value: number;
   label: string;
-  mode: "multi" | "single";
+  mode: 'multi' | 'single';
   colors: string[];
 };
 
@@ -24,40 +24,35 @@ const DonutChart: React.FC<Props> = ({
 }) => {
   const r = (size - strokeWidth) / 2;
   const c = 2 * Math.PI * r;
-  const ringColors = colors.length > 0 ? colors : ["#1F49FF"];
+  const ringColors = colors.length > 0 ? colors : ['#1F49FF'];
 
-  // segment rendering
-  const segCount = mode === "multi" ? ringColors.length : 2;
-  const gap = mode === "multi" ? 2 : 0; // subtle separation between segments
+  const segCount = mode === 'multi' ? ringColors.length : 2;
+  const gap = mode === 'multi' ? 2 : 0;
   const segLen = c / segCount - gap;
 
   return (
-    <div
-      className="relative grid place-items-center"
-      style={{ width: size, height: size }}
-    >
-      <svg width={size} height={size} className="rotate-[-90deg]">
-        {/* track */}
+    <div className='relative grid place-items-center' style={{ width: size, height: size }}>
+      <svg width={size} height={size} className='rotate-[-90deg]'>
         <circle
           cx={size / 2}
           cy={size / 2}
           r={r}
-          fill="none"
-          stroke="rgba(232,232,232,0.76)"
+          fill='none'
+          stroke='rgba(232,232,232,0.76)'
           strokeWidth={strokeWidth}
         />
 
-        {mode === "multi" ? (
+        {mode === 'multi' ? (
           ringColors.map((col, i) => (
             <circle
               key={col + i}
               cx={size / 2}
               cy={size / 2}
               r={r}
-              fill="none"
+              fill='none'
               stroke={col}
               strokeWidth={strokeWidth}
-              strokeLinecap="butt"
+              strokeLinecap='butt'
               strokeDasharray={`${segLen} ${c - segLen}`}
               strokeDashoffset={-(c / segCount) * i}
             />
@@ -68,20 +63,19 @@ const DonutChart: React.FC<Props> = ({
               cx={size / 2}
               cy={size / 2}
               r={r}
-              fill="none"
+              fill='none'
               stroke={ringColors[0]}
               strokeWidth={strokeWidth}
-              strokeLinecap="round"
+              strokeLinecap='round'
             />
-            {/* accent */}
             <circle
               cx={size / 2}
               cy={size / 2}
               r={r}
-              fill="none"
+              fill='none'
               stroke={ringColors[1] ?? ringColors[0]}
               strokeWidth={strokeWidth}
-              strokeLinecap="round"
+              strokeLinecap='round'
               strokeDasharray={`${c * 0.12} ${c}`}
               strokeDashoffset={-c * 0.25}
             />
@@ -89,18 +83,11 @@ const DonutChart: React.FC<Props> = ({
         )}
       </svg>
 
-      {/* center text */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2px] text-center">
-        <div
-          className="text-[22px] font-bold leading-[22px]"
-          style={{ fontFamily: "Rubik" }}
-        >
+      <div className='absolute inset-0 flex flex-col items-center justify-center gap-[2px] text-center'>
+        <div className='font-rubik text-[22px] font-bold leading-[22px]'>
           {value}
         </div>
-        <div
-          className="text-[11px] leading-[12px] text-[#76777C]"
-          style={{ fontFamily: "Rubik" }}
-        >
+        <div className='font-rubik text-[11px] leading-[12px] text-text-400'>
           {label}
         </div>
       </div>

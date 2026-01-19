@@ -3,7 +3,6 @@ import { paths } from '../../routes/paths';
 import { Layout, Menu, theme } from 'antd';
 import { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import classes from './Layout.module.scss';
 import { CustomFooter } from './footer';
 import { CustomHeader } from './header';
 import { useTranslation } from 'react-i18next';
