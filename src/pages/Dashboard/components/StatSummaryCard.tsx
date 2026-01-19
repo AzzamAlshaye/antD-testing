@@ -26,11 +26,8 @@ const StatSummaryCard: React.FC<Props> = ({
   return (
     <Card
       bordered={false}
-      className="!rounded-[4px]"
+      className="!rounded-[4px] shadow-card"
       styles={{ body: { padding: 0 } }}
-      style={{
-        boxShadow: "0px 4px 24px rgba(182,182,182,0.13)",
-      }}
     >
       <div className="flex items-center gap-6 p-6">
         <DonutChart
@@ -51,17 +48,11 @@ const StatSummaryCard: React.FC<Props> = ({
                     className="h-2 w-2 rounded-full"
                     style={{ background: it.color }}
                   />
-                  <span
-                    className="text-[12px] text-black"
-                    style={{ fontFamily: "Rubik" }}
-                  >
+                  <span className="font-rubik text-[12px] text-black">
                     {it.label}
                   </span>
                 </div>
-                <span
-                  className="text-[12px] font-semibold text-black"
-                  style={{ fontFamily: "Rubik" }}
-                >
+                <span className="font-rubik text-[12px] font-semibold text-black">
                   {it.value}
                 </span>
                 {idx !== items.length - 1 && (

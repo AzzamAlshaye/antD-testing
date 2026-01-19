@@ -91,16 +91,10 @@ const DonutChart: React.FC<Props> = ({
 
       {/* center text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-[2px] text-center">
-        <div
-          className="text-[22px] font-bold leading-[22px]"
-          style={{ fontFamily: "Rubik" }}
-        >
+        <div className="font-rubik text-[22px] font-bold leading-[22px]">
           {value}
         </div>
-        <div
-          className="text-[11px] leading-[12px] text-[#76777C]"
-          style={{ fontFamily: "Rubik" }}
-        >
+        <div className="font-rubik text-[11px] leading-[12px] text-text-400">
           {label}
         </div>
       </div>

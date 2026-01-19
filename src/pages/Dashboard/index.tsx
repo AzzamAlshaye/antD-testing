@@ -1,64 +1,42 @@
 // src/pages/Dashboard/index.tsx (hero removed; only white area content)
 import React from "react";
-import QuickActions, { type QuickActionItem } from "./components/QuickActions";
 import DashboardHero from "./components/DashboardHero";
-import RecentlyVisited, {
-  type RecentlyItem,
-} from "./components/RecentlyVisited";
+import QuickActions from "./components/QuickActions";
+import RecentlyVisited from "./components/RecentlyVisited";
 import TaskSection from "./components/TaskSection";
+import { useDashboardData } from "./useDashboardData";
 
 export default function DashboardPage(): React.JSX.Element {
-  const quickActions: QuickActionItem[] = [
-    { key: "create-complaint", label: "Create Complains", icon: "plus" },
-    { key: "create-seasons", label: "Create Seasons", icon: "refresh" },
-    { key: "create-group", label: "Create Group", icon: "layers" },
-  ];
-  const recentlyItems: RecentlyItem[] = [
-    {
-      id: "rv-1",
-      org: "Ministry of Health",
-      type: "Issue",
-      reporter: "Reporter name",
-      priority: "High",
-    },
-    {
-      id: "rv-2",
-      org: "Ministry of Health",
-      type: "Response",
-      reporter: "Reporter name",
-      priority: "High",
-    },
-    {
-      id: "rv-3",
-      org: "Ministry of Health",
-      type: "Issue",
-      reporter: "Reporter name",
-      priority: "High",
-    },
-  ];
+  const { data } = useDashboardData();
 
   return (
     <div className="relative z-20 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[40px]">
       <div className="-mt-[120px]">
-        <DashboardHero />
+        <DashboardHero cards={data.heroCards} />
       </div>
 
-      <div className="mt-6 rounded-[6px] bg-white p-6 shadow-[0px_4px_24px_rgba(182,182,182,0.13)]">
+      <div className="mt-6 rounded-[6px] bg-white p-6 shadow-card">
         <div className="grid gap-6 lg:grid-cols-[1fr_auto_1fr]">
           <div>
-            <QuickActions title="Quick Actions" actions={quickActions} />
+            <QuickActions title="Quick Actions" actions={data.quickActions} />
           </div>
 
           <div className="hidden w-px bg-[#F0F0F0] lg:block" />
 
           <div>
-            <RecentlyVisited title="Recently visited" items={recentlyItems} />
+            <RecentlyVisited
+              title="Recently visited"
+              items={data.recentlyVisited}
+            />
           </div>
         </div>
       </div>
 
       <div className="mt-7">
-        <TaskSection />
+        <TaskSection
+          tasksByTab={data.tasksByTab}
+          unassignedCount={data.unassignedCount}
+        />
       </div>
     </div>
   );
