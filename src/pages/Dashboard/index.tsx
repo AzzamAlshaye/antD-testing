@@ -10,7 +10,7 @@ export default function DashboardPage(): React.JSX.Element {
   const { data } = useDashboardData();
 
   return (
-    <div className="relative z-20 mx-auto w-full max-w-[1440px] px-[16px] lg:px-[40px]">
+    <div className="relative z-20 mx-auto w-full max-w-[1440px] px-[16px] pb-10 lg:px-[40px]">
       <div className="-mt-[120px]">
         <DashboardHero cards={data.heroCards} />
       </div>

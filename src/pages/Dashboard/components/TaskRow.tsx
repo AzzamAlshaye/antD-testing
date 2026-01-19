@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
-import { RightOutlined } from "@ant-design/icons";
+import { ArrowUpOutlined, LineOutlined, RightOutlined } from "@ant-design/icons";
 import type { TaskItem } from "@interfaces/IDashboard";
 
 type Props = {
@@ -9,10 +9,18 @@ type Props = {
 
 const priorityStyles: Record<
   TaskItem["priority"],
-  { borderClass: string; label: string }
+  { borderClass: string; label: string; icon: React.ReactNode }
 > = {
-  High: { borderClass: "border-[#EA7100]", label: "High" },
-  Medium: { borderClass: "border-[#E38500]", label: "Medium" },
+  High: {
+    borderClass: "border-[#EA7100]",
+    label: "High",
+    icon: <ArrowUpOutlined className="text-[#EA7100]" />,
+  },
+  Medium: {
+    borderClass: "border-[#E38500]",
+    label: "Medium",
+    icon: <LineOutlined className="text-[#E38500]" />,
+  },
 };
 
 const categoryStyles: Record<
@@ -69,9 +77,7 @@ const TaskRow: React.FC<Props> = ({ item }) => {
         <div className="flex items-center gap-4">
           <Tag className="!m-0 !border-0 !bg-transparent !p-0 !font-rubik !text-[10.5px] !text-text-500">
             <span className="inline-flex items-center gap-2">
-              <span
-                className={`inline-block h-[14px] w-[14px] rounded-sm border ${pr.borderClass}`}
-              />
+              {pr.icon}
               {pr.label}
             </span>
           </Tag>
