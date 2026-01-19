@@ -5,7 +5,7 @@ type Props = {
   className?: string;
 };
 
-export default function AppFooter({
+export default function Footer({
   className = "",
 }: Props): React.JSX.Element {
   const { t } = useTranslation();

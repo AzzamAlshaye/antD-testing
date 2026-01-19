@@ -6,8 +6,8 @@ import {
   Outlet,
 } from "react-router";
 
-import AppNavbar from "@pages/Dashboard/components/TopNavBar";
-import AppFooter from "@pages/Dashboard/components/AppFooter";
+import AppNavbar from "@pages/Dashboard/components/TopNav";
+import AppFooter from "@pages/Dashboard/components/Footer";
 import DashboardPage from "@pages/Dashboard";
 import RouteGuard from "@routes/routeGuard";
 import { paths } from "@routes/paths";

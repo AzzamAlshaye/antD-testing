@@ -14,7 +14,7 @@ const navItemKeys = [
   "nav.systemManagement",
 ] as const;
 
-export default function TopNavBar(): React.JSX.Element {
+export default function TopNav(): React.JSX.Element {
   const { t } = useTranslation();
   const { lang, toggleLang } = useAppLocale();
   const location = useLocation();
